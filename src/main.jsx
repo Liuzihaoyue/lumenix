@@ -51,10 +51,9 @@ function Header({ light = false }) {
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const links = [
-    ["About", "/#about"],
-    ["Solutions", "/#solutions"],
-    ["Products", "/projects"],
-    ["Partners", "/#testimonials"],
+    ["Global Partners", "/#global-partners"],
+    ["Product", "/#product"],
+    ["Supply", "/#supply"],
   ];
 
   useEffect(() => {
@@ -114,7 +113,7 @@ function Hero() {
 
 function About() {
   return (
-    <section id="about" className="about section">
+    <section id="global-partners" className="about section">
       <div className="about-media">
         <img className="tall" src={`${A}about1.png`} alt="Lumenix AI lifestyle device" />
         <div>
@@ -162,7 +161,7 @@ function ProjectCard({ p }) {
 
 function Projects({ page = false }) {
   return (
-    <section id="solutions" className={`projects section ${page ? "projects-page" : ""}`}>
+    <section id="product" className={`projects section ${page ? "projects-page" : ""}`}>
       <p className="pill"><Sparkles size={14} /> PRODUCT SHOWCASE</p>
       <h2>Lumenix AI <span>Hardware Lineup</span></h2>
       <div className="grid">
@@ -180,7 +179,7 @@ const testimonials = [
 
 function Testimonials() {
   return (
-    <section id="testimonials" className="testimonials section">
+    <section id="supply" className="testimonials section">
       <div className="testi-copy">
         <h2>Reliable supply, fast response,<br />and <span>long-term collaboration support.</span></h2>
         <p>From sourcing and product selection to launch support and retail strategy, LUMENIX works closely with partners to move products into market faster.</p>
@@ -241,10 +240,9 @@ function Footer() {
         <div>
           <h3>Quick Links</h3>
           {[
-            ["About", "/#about"],
-            ["Solutions", "/#solutions"],
-            ["Products", "/projects"],
-            ["Partners", "/#testimonials"],
+            ["Global Partners", "/#global-partners"],
+            ["Product", "/#product"],
+            ["Supply", "/#supply"],
             ["Contact Us", "/#contact"],
           ].map(([label, href]) => <a key={label} href={href}>{label}</a>)}
         </div>
