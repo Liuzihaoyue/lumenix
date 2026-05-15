@@ -245,16 +245,23 @@ h2 span { color: var(--orange); }
   background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.78));
 }
 .project-card:hover img { transform: scale(1.08); filter: brightness(.86); }
-.project-card > span {
+.project-card > .product-badge {
   position: absolute;
   right: 16px;
   top: 16px;
   z-index: 2;
-  padding: 8px 12px;
-  border-radius: 4px;
+  min-width: 64px;
+  padding: 8px 14px;
+  border-radius: 999px;
   background: var(--orange);
+  text-align: center;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+.project-card > .product-badge.new {
+  background: #fff;
+  color: #111;
 }
 .project-card div {
   position: absolute;
@@ -264,7 +271,13 @@ h2 span { color: var(--orange); }
   bottom: 22px;
 }
 .project-card h3 { margin: 0 0 12px; font-size: 26px; line-height: 1.12; font-weight: 500; }
-.project-card p { display: flex; align-items: center; gap: 7px; margin: 0; font-size: 14px; }
+.project-card p {
+  max-width: 92%;
+  margin: 0;
+  color: rgba(255,255,255,.86);
+  font-size: 15px;
+  line-height: 1.42;
+}
 
 .testimonials {
   display: grid;

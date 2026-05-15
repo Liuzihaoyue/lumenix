@@ -109,22 +109,22 @@ function About() {
 }
 
 const projects = [
-  ["AI Eyewear", "Everyday Assistant Glasses", "Hands-free AI companion", "proj1.png"],
-  ["Smart Retail", "In-store Product Demo Kit", "Partner launch display", "proj2.webp"],
-  ["Connected Life", "Voice-first Daily Control", "Wearable command flow", "proj3.webp"],
-  ["AI Capture", "Creator Recording Workflow", "Lightweight visual memory", "proj4.jpg"],
-  ["Partner Enablement", "Distributor Launch Program", "Sales-ready product system", "proj5.jpg"],
-  ["Smart Lifestyle", "Multi-device AI Experience", "Seamless daily intelligence", "proj6.jpg"],
+  ["HOT", "Lumenix AI Glasses", "Hands-free assistant for calls, capture, translation, and daily prompts.", "proj1.png"],
+  ["NEW", "Lumenix Pocket Hub", "Portable AI control center for connected devices and on-the-go workflows.", "proj2.webp"],
+  ["HOT", "Lumenix Vision Cam", "Compact intelligent camera module for smart capture and live assistance.", "proj3.webp"],
+  ["NEW", "Lumenix Voice Ring", "Always-ready voice interaction hardware for quick commands and private notes.", "proj4.jpg"],
+  ["HOT", "Lumenix Studio Kit", "Creator-ready AI hardware bundle for recording, streaming, and product demos.", "proj5.jpg"],
+  ["NEW", "Lumenix Home Dock", "Multi-device smart living dock for charging, syncing, and AI scene control.", "proj6.jpg"],
 ];
 
 function ProjectCard({ p }) {
   return (
     <article className="project-card">
       <img src={`${A}${p[3]}`} alt={p[1]} />
-      <span>{p[0]}</span>
+      <span className={`product-badge ${p[0].toLowerCase()}`}>{p[0]}</span>
       <div>
         <h3>{p[1]}</h3>
-        <p><MapPin size={16} /> {p[2]}</p>
+        <p>{p[2]}</p>
       </div>
     </article>
   );
@@ -133,8 +133,8 @@ function ProjectCard({ p }) {
 function Projects({ page = false }) {
   return (
     <section id="solutions" className={`projects section ${page ? "projects-page" : ""}`}>
-      <p className="pill"><Sparkles size={14} /> LUMENIX SOLUTIONS</p>
-      <h2>AI Living <span>Use Cases</span></h2>
+      <p className="pill"><Sparkles size={14} /> PRODUCT SHOWCASE</p>
+      <h2>Lumenix AI <span>Hardware Lineup</span></h2>
       <div className="grid">
         {projects.map((p) => <ProjectCard key={p[1]} p={p} />)}
       </div>
