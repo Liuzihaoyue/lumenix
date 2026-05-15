@@ -474,10 +474,17 @@ footer p svg { vertical-align: middle; margin-right: 8px; }
 
 @media (max-width: 809px) {
   .header, .header.light {
+    left: 20px;
+    right: 20px;
     width: calc(100% - 40px);
     height: 74px;
+    transform: none;
     grid-template-columns: 1fr auto;
     padding: 0 14px;
+    transition: top .28s ease, background .28s ease, box-shadow .28s ease, color .28s ease;
+  }
+  .header.hidden {
+    top: -92px;
   }
   .desktop-nav, .desktop-cta { display: none; }
   .brand-mark { width: 28px; height: 28px; }
@@ -495,6 +502,7 @@ footer p svg { vertical-align: middle; margin-right: 8px; }
   .header.light .menu-btn { background: #111; color: #fff; }
   .mobile-panel {
     position: fixed;
+    z-index: 40;
     inset: 0;
     flex-direction: column;
     gap: 26px;
@@ -519,7 +527,9 @@ footer p svg { vertical-align: middle; margin-right: 8px; }
     left: 20px;
     bottom: 198px;
     right: 20px;
+    max-width: calc(100% - 40px);
     font-size: 15px;
+    line-height: 1.45;
   }
   .hero-card {
     width: calc(100% - 40px);

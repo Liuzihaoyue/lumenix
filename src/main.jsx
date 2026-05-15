@@ -102,7 +102,7 @@ function Hero() {
         <p className="eyebrow"><span>#1</span> AI HARDWARE FOR LIFE, WORK, AND EVERYDAY INTELLIGENCE.</p>
         <h1>Light the Way.<br />Lead the Future.</h1>
       </div>
-      <p className="hero-desc">Lumenix creates AI-powered devices for smarter work,<br />travel, and everyday connection.</p>
+      <p className="hero-desc">Lumenix creates AI-powered devices for smarter work, travel, and everyday connection.</p>
       <div className="hero-card">
         <div className="stars">★ ★ ★ ★ ★</div>
         <p>“Lumenix makes daily information, calls, capture, and AI assistance feel natural, lightweight, and always within reach.”</p>
