@@ -195,7 +195,7 @@ function Testimonials() {
       </div>
       <figure className="factory">
         <img src={`${A}avatar1.png`} alt="Robotic arm in production facility" />
-        <figcaption>- “MOQ was easier to work with compared to other suppliers.”</figcaption>
+        <figcaption>- “Lumenix helps partners launch AI hardware with clearer product direction and market-ready support.”</figcaption>
       </figure>
     </section>
   );
