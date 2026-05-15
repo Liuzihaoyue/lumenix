@@ -37,7 +37,7 @@ function Header({ light = false }) {
   const [open, setOpen] = useState(false);
   const links = [
     ["About", "/#about"],
-    ["Services", "/#services"],
+    ["Solutions", "/#solutions"],
     ["Projects", "/projects"],
     ["Testimonials", "/#testimonials"],
   ];
@@ -68,13 +68,13 @@ function Hero() {
       <Header />
       <div className="hero-bg" />
       <div className="hero-copy reveal">
-        <p className="eyebrow"><span>#1</span> AI TECHNOLOGY FOR MODERN LIFE.</p>
+        <p className="eyebrow"><span>#1</span> AI TECHNOLOGY FOR SMART LIVING.</p>
         <h1>Technology For Smart<br />Living.</h1>
       </div>
-      <p className="hero-desc">Lumenix creates next-gen AI eyewearfor a smarter,<br />connected world.</p>
+      <p className="hero-desc">Lumenix creates AI-powered lifestyle devices for a smarter,<br />more connected everyday world.</p>
       <div className="hero-card">
         <div className="stars">★ ★ ★ ★ ★</div>
-        <p>“Lumenix completely changed how I interact with information throughout the day. It feels natural, lightweight, and surprisingly intuitive.”</p>
+        <p>“Lumenix makes daily information, calls, capture, and AI assistance feel natural, lightweight, and always within reach.”</p>
         <strong>- Daniel K., San Francisco</strong>
       </div>
     </section>
@@ -85,22 +85,22 @@ function About() {
   return (
     <section id="about" className="about section">
       <div className="about-media">
-        <img className="tall" src={`${A}about1.png`} alt="Lumenix eyewear components" />
+        <img className="tall" src={`${A}about1.png`} alt="Lumenix AI lifestyle device" />
         <div>
-          <img src={`${A}about2.png`} alt="Camera accessory" />
-          <img src={`${A}about3.png`} alt="Lumenix remote device" />
+          <img src={`${A}about2.png`} alt="Lumenix smart camera module" />
+          <img src={`${A}about3.png`} alt="Lumenix connected control device" />
         </div>
       </div>
       <div className="about-copy">
         <p className="pill"><Sparkles size={14} /> GLOBAL PARTNERS</p>
-        <h2>Let's Build the <span>Future Together.</span></h2>
-        <p>We collaborate with retailers, distributors, e-commerce operators, and business partners to bring innovative technology products into more markets and scenarios.</p>
-        <a className="learn" href="#contact">Lrean morn</a>
+        <h2>Let's Build the <span>AI Life Future Together.</span></h2>
+        <p>We work with retailers, distributors, e-commerce teams, and strategic partners to bring intuitive AI living products into more daily scenarios.</p>
+        <a className="learn" href="#contact">Learn more</a>
         <div className="stats">
           {[
-            ["15+", "Years of Experience"],
-            ["40+", "Projects Completed"],
-            ["100%", "Client Satisfaction"],
+            ["15+", "Partner Markets"],
+            ["40+", "Launch Scenarios"],
+            ["100%", "Collaboration Focus"],
           ].map(([n, l]) => <div key={l}><strong>{n}</strong><span>{l}</span></div>)}
         </div>
       </div>
@@ -109,12 +109,12 @@ function About() {
 }
 
 const projects = [
-  ["Residential", "Modern Coastal Retreat", "Malibu, California", "proj1.png"],
-  ["Luxury Apartment", "Downtown Penthouse Transformation", "San Francisco", "proj2.webp"],
-  ["Residential", "Silicon Valley Smart Home", "Palo Alto", "proj3.webp"],
-  ["Residential Renovation", "Beverly Hills Luxury Residence", "Beverly Hills, California", "proj4.jpg"],
-  ["Commercial", "Santa Monica Creative Studio", "Santa Monica, California", "proj5.jpg"],
-  ["Residential", "Sonoma Valley Vineyard Retreat", "Sonoma Valley, California", "proj6.jpg"],
+  ["AI Eyewear", "Everyday Assistant Glasses", "Hands-free AI companion", "proj1.png"],
+  ["Smart Retail", "In-store Product Demo Kit", "Partner launch display", "proj2.webp"],
+  ["Connected Life", "Voice-first Daily Control", "Wearable command flow", "proj3.webp"],
+  ["AI Capture", "Creator Recording Workflow", "Lightweight visual memory", "proj4.jpg"],
+  ["Partner Enablement", "Distributor Launch Program", "Sales-ready product system", "proj5.jpg"],
+  ["Smart Lifestyle", "Multi-device AI Experience", "Seamless daily intelligence", "proj6.jpg"],
 ];
 
 function ProjectCard({ p }) {
@@ -132,9 +132,9 @@ function ProjectCard({ p }) {
 
 function Projects({ page = false }) {
   return (
-    <section id="services" className={`projects section ${page ? "projects-page" : ""}`}>
-      <p className="pill"><Sparkles size={14} /> OUR PROJECTS</p>
-      <h2>Showcase of <span>Our Work</span></h2>
+    <section id="solutions" className={`projects section ${page ? "projects-page" : ""}`}>
+      <p className="pill"><Sparkles size={14} /> LUMENIX SOLUTIONS</p>
+      <h2>AI Living <span>Use Cases</span></h2>
       <div className="grid">
         {projects.map((p) => <ProjectCard key={p[1]} p={p} />)}
       </div>
@@ -176,26 +176,26 @@ function Contact() {
     <section id="contact" className="contact section">
       <div className="contact-left">
         <p className="pill"><BadgeDollarSign size={14} /> REQUEST A QUOTE</p>
-        <h2>Let’s Talk <span>Renovation</span></h2>
-        <p>Have a renovation in mind? Fill out the form and we’ll get in touch within 24 hours to discuss your project.</p>
-        <img src={`${A}factory.jpg`} alt="Modern living room" />
+        <h2>Let’s Talk <span>AI Living</span></h2>
+        <p>Planning a product launch, distribution partnership, or AI lifestyle retail program? Send us a note and the Lumenix team will follow up within 24 hours.</p>
+        <img src={`${A}factory.jpg`} alt="Lumenix product and operations workspace" />
         <div className="contact-links">
           <a href="tel:+19512390523"><Phone /> <span><strong>Call Us Now</strong>+1 (951) 239-0523</span></a>
-          <a href="mailto:hello@livohaus.com"><Mail /> <span><strong>Email Us</strong>hello@livohaus.com</span></a>
+          <a href="mailto:hello@lumenix.ai"><Mail /> <span><strong>Email Us</strong>hello@lumenix.ai</span></a>
         </div>
       </div>
       <form className="quote-form" onSubmit={(e) => e.preventDefault()}>
         <label>Full Name <b>*</b><input placeholder="Jane Smith" /></label>
         <div className="two">
-          <label>Email Address <b>*</b><input type="email" placeholder="jane@framer.com" /></label>
+          <label>Email Address <b>*</b><input type="email" placeholder="jane@company.com" /></label>
           <label>Phone Number (optional)<input placeholder="+1 (951) 239-0523" /></label>
         </div>
         <div className="two">
-          <label>Project Location <b>*</b><input placeholder="California" /></label>
-          <label>Type of Renovation <b>*</b><select defaultValue=""><option value="" disabled>Select...</option><option>Kitchen</option><option>Bathroom</option><option>Full Home</option><option>Other</option></select></label>
+          <label>Market / Region <b>*</b><input placeholder="North America" /></label>
+          <label>Partnership Type <b>*</b><select defaultValue=""><option value="" disabled>Select...</option><option>Retail Distribution</option><option>E-commerce Launch</option><option>Brand Partnership</option><option>Other</option></select></label>
         </div>
-        <label>Message / Project Brief<textarea placeholder="Write your project details..." /></label>
-        <button><span>Request Free Quote</span><i><ArrowRight size={20} /></i></button>
+        <label>Message / Partnership Brief<textarea placeholder="Tell us about your launch goals, channels, and target market..." /></label>
+        <button><span>Request Partnership Info</span><i><ArrowRight size={20} /></i></button>
       </form>
     </section>
   );
@@ -206,32 +206,34 @@ function Footer() {
     <footer>
       <div className="footer-top">
         <div>
-          <h2>Your trusted partner in<br />home renovation & interiors.</h2>
-          <Cta href="#contact">Request Free Quote</Cta>
+          <h2>Your trusted partner for<br />AI-powered smart living.</h2>
+          <Cta href="#contact">Start a Partnership</Cta>
         </div>
         <div>
           <h3>Quick Links</h3>
-          {["About", "Services", "Projects", "Testimonials", "Contact Us"].map((x) => <a key={x} href={x === "Projects" ? "/projects" : `/#${x.toLowerCase().replace(" us", "").replace(" ", "")}`}>{x}</a>)}
+          {[
+            ["About", "/#about"],
+            ["Solutions", "/#solutions"],
+            ["Projects", "/projects"],
+            ["Testimonials", "/#testimonials"],
+            ["Contact Us", "/#contact"],
+          ].map(([label, href]) => <a key={label} href={href}>{label}</a>)}
         </div>
         <div>
           <h3>Contact Us</h3>
           <p><MapPin size={16} /> California, United States</p>
           <p><Phone size={16} /> (617) 555-0192</p>
-          <p><Mail size={16} /> contact@livohaus.com</p>
+          <p><Mail size={16} /> contact@lumenix.ai</p>
           <div className="social"><i>f</i><i>◎</i><i>𝕏</i></div>
         </div>
       </div>
       <div className="footer-bottom">
-        <p>© 2026 Livohaus ✦ Designed by <a>Arnab</a></p>
-        <p>Crafted with care ✦ Powered by <a>Framer</a></p>
+        <p>© 2026 Lumenix ✦ AI Smart Living Brand</p>
+        <p>Built for partners, retailers, and connected-life teams</p>
       </div>
-      <img className="footer-word" src={`${A}livo.png`} alt="" />
+      <div className="footer-word" aria-hidden="true">LUMENIX</div>
     </footer>
   );
-}
-
-function FramerBadge() {
-  return <a className="framer-badge" href="https://www.framer.com">▰ Made in Framer</a>;
 }
 
 function Home() {
@@ -245,7 +247,6 @@ function Home() {
         <Contact />
       </main>
       <Footer />
-      <FramerBadge />
     </>
   );
 }
@@ -256,7 +257,6 @@ function ProjectsPage() {
       <Header light />
       <main className="project-main"><Projects page /></main>
       <Footer />
-      <FramerBadge />
     </>
   );
 }
