@@ -109,12 +109,12 @@ function About() {
 }
 
 const projects = [
-  ["HOT", "Lumenix AI Glasses", "proj1.png"],
-  ["NEW", "Lumenix Pocket Hub", "proj2.webp"],
-  ["HOT", "Lumenix Vision Cam", "proj3.webp"],
-  ["NEW", "Lumenix Voice Ring", "proj4.jpg"],
-  ["HOT", "Lumenix Studio Kit", "proj5.jpg"],
-  ["NEW", "Lumenix Home Dock", "proj6.jpg"],
+  ["HOT", "Multifunctional AI Glasses", "products/multifunction-ai-glasses/main.png"],
+  ["NEW", "Gimbal Smart Conference Camera", "products/real-time-translation-earbuds/main.png"],
+  ["HOT", "AI Voice Recorder", "products/hd-desktop-webcam-mic/main.png"],
+  ["NEW", "AI Bluetooth Translation Earbuds", "products/drone-gimbal-ai-camera/main.png"],
+  ["NEW", "Self-Service Rental Guide Device", "products/portable-ai-voice-recorder/main.png"],
+  ["NEW", "AI Smart Voice Translator", "products/solar-aroma-diffuser/main.png"],
 ];
 
 function ProjectCard({ p }) {
@@ -177,7 +177,7 @@ function Contact() {
         <p className="pill"><BadgeDollarSign size={14} /> REQUEST A QUOTE</p>
         <h2>Let’s Talk <span>AI Living</span></h2>
         <p>Planning a product launch, distribution partnership, or AI lifestyle retail program? Send us a note and the Lumenix team will follow up within 24 hours.</p>
-        <img src={`${A}factory.jpg`} alt="Lumenix product and operations workspace" />
+        <img src={`${A}contact-glasses.jpg`} alt="Lumenix AI smart glasses" />
         <div className="contact-links">
           <a href="tel:+19512390523"><Phone /> <span><strong>Call Us Now</strong>+1 (951) 239-0523</span></a>
           <a href="mailto:hello@lumenix.ai"><Mail /> <span><strong>Email Us</strong>hello@lumenix.ai</span></a>
