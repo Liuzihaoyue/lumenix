@@ -109,22 +109,21 @@ function About() {
 }
 
 const projects = [
-  ["HOT", "Lumenix AI Glasses", "Hands-free assistant for calls, capture, translation, and daily prompts.", "proj1.png"],
-  ["NEW", "Lumenix Pocket Hub", "Portable AI control center for connected devices and on-the-go workflows.", "proj2.webp"],
-  ["HOT", "Lumenix Vision Cam", "Compact intelligent camera module for smart capture and live assistance.", "proj3.webp"],
-  ["NEW", "Lumenix Voice Ring", "Always-ready voice interaction hardware for quick commands and private notes.", "proj4.jpg"],
-  ["HOT", "Lumenix Studio Kit", "Creator-ready AI hardware bundle for recording, streaming, and product demos.", "proj5.jpg"],
-  ["NEW", "Lumenix Home Dock", "Multi-device smart living dock for charging, syncing, and AI scene control.", "proj6.jpg"],
+  ["HOT", "Lumenix AI Glasses", "proj1.png"],
+  ["NEW", "Lumenix Pocket Hub", "proj2.webp"],
+  ["HOT", "Lumenix Vision Cam", "proj3.webp"],
+  ["NEW", "Lumenix Voice Ring", "proj4.jpg"],
+  ["HOT", "Lumenix Studio Kit", "proj5.jpg"],
+  ["NEW", "Lumenix Home Dock", "proj6.jpg"],
 ];
 
 function ProjectCard({ p }) {
   return (
     <article className="project-card">
-      <img src={`${A}${p[3]}`} alt={p[1]} />
+      <img src={`${A}${p[2]}`} alt={p[1]} />
       <span className={`product-badge ${p[0].toLowerCase()}`}>{p[0]}</span>
       <div>
         <h3>{p[1]}</h3>
-        <p>{p[2]}</p>
       </div>
     </article>
   );
