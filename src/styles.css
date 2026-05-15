@@ -525,7 +525,7 @@ footer p svg { vertical-align: middle; margin-right: 8px; }
   .hero h1 { font-size: 48px; }
   .hero-desc {
     left: 20px;
-    bottom: 198px;
+    bottom: 244px;
     right: 20px;
     max-width: calc(100% - 40px);
     font-size: 15px;
@@ -536,6 +536,11 @@ footer p svg { vertical-align: middle; margin-right: 8px; }
     left: 20px;
     right: 20px;
     bottom: 30px;
+    padding: 16px 20px;
+  }
+  .hero-card p {
+    margin: 10px 0 12px;
+    line-height: 1.38;
   }
   .section { padding: 72px 0; }
   .about-media { grid-template-columns: 1fr; }
