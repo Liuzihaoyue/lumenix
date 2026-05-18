@@ -6,13 +6,20 @@ import {
   Mail,
   MapPin,
   Menu,
-  Quote,
   Sparkles,
   X,
 } from "lucide-react";
+import { PRODUCT_ROWS, getProductDisplayName, getProductGroups } from "./productTable.js";
 import "./styles.css";
 
 const A = "/assets/";
+
+const navLinks = [
+  ["Product", "/#product"],
+  ["Global Partners", "/#global-partners"],
+  ["Booking", "/booking"],
+  ["About Lumenix", "/about-lumenix"],
+];
 
 function Brand({ dark = false }) {
   return (
@@ -50,11 +57,6 @@ function Header({ light = false }) {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const links = [
-    ["Global Partners", "/#global-partners"],
-    ["Product", "/#product"],
-    ["Supply", "/#supply"],
-  ];
 
   useEffect(() => {
     let lastY = window.scrollY;
@@ -75,7 +77,7 @@ function Header({ light = false }) {
     <header className={`header ${light ? "light" : ""} ${scrolled ? "scrolled" : ""} ${hidden ? "hidden" : ""}`}>
       <Brand dark={light} />
       <nav className="desktop-nav">
-        {links.map(([label, href]) => <a key={label} href={href}>{label}</a>)}
+        {navLinks.map(([label, href]) => <a key={label} href={href}>{label}</a>)}
       </nav>
       <div className="desktop-cta"><Cta dark={light} /></div>
       <button className="menu-btn" onClick={() => setOpen(true)} aria-label="Open menu">
@@ -85,8 +87,8 @@ function Header({ light = false }) {
         <button className="close-btn" onClick={() => setOpen(false)} aria-label="Close menu">
           <X size={24} />
         </button>
-        {links.map(([label, href]) => <a onClick={() => setOpen(false)} key={label} href={href}>{label}</a>)}
-        <Cta href="/#contact" />
+        {navLinks.map(([label, href]) => <a onClick={() => setOpen(false)} key={label} href={href}>{label}</a>)}
+        <Cta href="#contact" />
       </div>
     </header>
   );
@@ -96,6 +98,9 @@ function Hero() {
   return (
     <section className="hero">
       <Header />
+      <video className="hero-video" autoPlay muted loop playsInline poster={`${A}hero.jpg`}>
+        <source src={`${A}GlassesVideo.mp4`} type="video/mp4" />
+      </video>
       <div className="hero-bg" />
       <div className="hero-copy reveal">
         <p className="eyebrow"><span>#1</span> AI HARDWARE FOR LIFE, WORK, AND EVERYDAY INTELLIGENCE.</p>
@@ -138,22 +143,17 @@ function About() {
   );
 }
 
-const projects = [
-  ["HOT", "Multifunctional AI Glasses", "products/multifunction-ai-glasses/main.png"],
-  ["NEW", "Gimbal Smart Conference Camera", "products/real-time-translation-earbuds/main.png"],
-  ["HOT", "AI Voice Recorder", "products/hd-desktop-webcam-mic/main.png"],
-  ["NEW", "AI Bluetooth Translation Earbuds", "products/drone-gimbal-ai-camera/main.png"],
-  ["NEW", "Self-Service Rental Guide Device", "products/portable-ai-voice-recorder/main.png"],
-  ["NEW", "AI Smart Voice Translator", "products/solar-aroma-diffuser/main.png"],
-];
+const productGroups = getProductGroups();
 
 function ProjectCard({ p }) {
+  const displayName = getProductDisplayName(p);
+
   return (
     <article className="project-card">
-      <img src={`${A}${p[2]}`} alt={p[1]} />
-      <span className={`product-badge ${p[0].toLowerCase()}`}>{p[0]}</span>
+      <img src={`${A}${p.image}`} alt={displayName} />
+      <span className={`product-badge ${p.badge.toLowerCase()}`}>{p.badge}</span>
       <div>
-        <h3>{p[1]}</h3>
+        <h3>{displayName}</h3>
       </div>
     </article>
   );
@@ -165,42 +165,40 @@ function Projects({ page = false }) {
       <p className="pill"><Sparkles size={14} /> PRODUCT SHOWCASE</p>
       <h2>Lumenix AI <span>Hardware Lineup</span></h2>
       <div className="grid">
-        {projects.map((p) => <ProjectCard key={p[1]} p={p} />)}
+        {PRODUCT_ROWS.map((p) => <ProjectCard key={`${p.name}-${p.model}`} p={p} />)}
       </div>
     </section>
   );
 }
 
-const testimonials = [
-  ["“We tested Meta smart glasses before, but LUMENIX gave us more flexibility on pricing, customization, and launch speed.”", "Minh T.", "Ho Chi Minh City"],
-  ["“We started with a smaller order because the category was still new for us. Sell-through ended up better than expected.”", "Ayu R.", "Jakarta"],
-  ["“Their product and operations people understood retail feedback instead of only pushing inventory.”", "Narin S.", "Bangkok"],
-];
-
-function Testimonials() {
+function BookingCatalog() {
   return (
-    <section id="supply" className="testimonials section">
-      <div className="testi-copy">
-        <h2>Reliable supply, fast response,<br />and <span>long-term collaboration support.</span></h2>
-        <p>From sourcing and product selection to launch support and retail strategy, LUMENIX works closely with partners to move products into market faster.</p>
-        <div className="testi-grid">
-          {testimonials.map((t, i) => (
-            <article key={t[1]} className="testi-card">
-              <p>{t[0]}</p>
-              <div><img src={`${A}${["contact.jpeg", "contact2.jpeg", "contact3.jpg"][i]}`} alt="" /><span><strong>{t[1]}</strong>{t[2]}</span><Quote /></div>
-            </article>
-          ))}
+    <section className="catalog section">
+      <p className="pill"><Sparkles size={14} /> BOOKING</p>
+      <h1>Choose Lumenix <span>AI Products</span></h1>
+      <p className="section-lead">Browse Lumenix product categories and choose the products you want to discuss with our partnership team.</p>
+      {productGroups.map(([group, items]) => (
+        <div className="catalog-group" key={group}>
+          <h2>{group}</h2>
+          <div className="catalog-grid">
+            {items.map((item) => (
+              <article className="catalog-card" key={`${item.name}-${item.model}`}>
+                <div className={item.image ? "catalog-image" : "catalog-image empty"}>
+                  {item.image ? <img src={`${A}${item.image}`} alt={getProductDisplayName(item)} /> : null}
+                </div>
+                <div className="catalog-card-label">
+                  <span>{getProductDisplayName(item)}</span>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
-      <figure className="factory">
-        <img src={`${A}avatar1.png`} alt="Robotic arm in production facility" />
-        <figcaption>- “Lumenix helps partners launch AI hardware with clearer product direction and market-ready support.”</figcaption>
-      </figure>
+      ))}
     </section>
   );
 }
 
-function Contact() {
+function PartnerWithUs() {
   return (
     <section id="contact" className="contact section">
       <div className="contact-left">
@@ -229,6 +227,43 @@ function Contact() {
   );
 }
 
+function AboutLumenixContent() {
+  return (
+    <main className="page-main">
+      <section className="brand-story section">
+        <p className="pill"><Sparkles size={14} /> ABOUT LUMENIX</p>
+        <h1>AI hardware for a lighter, smarter way to live and work.</h1>
+        <p className="section-lead">Lumenix builds practical AI-powered devices for communication, capture, translation, mobility, and everyday assistance. We focus on products that feel natural in real routines and dependable for global partners.</p>
+      </section>
+
+      <section className="culture section">
+        <img src={`${A}about1.png`} alt="Lumenix smart wearable product" />
+        <div>
+          <p className="pill"><Sparkles size={14} /> CULTURE</p>
+          <h2>Light the Way. <span>Lead the Future.</span></h2>
+          <p>We believe smart hardware should reduce friction instead of adding complexity. Our team works across product design, supply chain, and launch support to help partners bring AI devices to real customers with clarity and speed.</p>
+          <blockquote>“Build products people can understand in seconds, trust in daily use, and share across markets.”</blockquote>
+        </div>
+      </section>
+
+      <section className="supply-proof section">
+        <div>
+          <p className="pill"><BadgeDollarSign size={14} /> SUPPLY CHAIN</p>
+          <h2>Market-ready products backed by <span>production support.</span></h2>
+          <p>From sourcing and product selection to quality review and packaging readiness, Lumenix supports partners with flexible collaboration and efficient launch preparation.</p>
+        </div>
+        <div className="proof-grid">
+          <img src={`${A}factory.jpg`} alt="Lumenix supply chain facility" />
+          <img src={`${A}about2.png`} alt="Lumenix product detail" />
+          <img src={`${A}about3.png`} alt="Lumenix connected device" />
+        </div>
+      </section>
+
+      <PartnerWithUs />
+    </main>
+  );
+}
+
 function Footer() {
   return (
     <footer>
@@ -240,10 +275,11 @@ function Footer() {
         <div>
           <h3>Quick Links</h3>
           {[
-            ["Global Partners", "/#global-partners"],
             ["Product", "/#product"],
-            ["Supply", "/#supply"],
-            ["Contact Us", "/#contact"],
+            ["Global Partners", "/#global-partners"],
+            ["Booking", "/booking"],
+            ["About Lumenix", "/about-lumenix"],
+            ["Contact Us", "#contact"],
           ].map(([label, href]) => <a key={label} href={href}>{label}</a>)}
         </div>
         <div>
@@ -270,21 +306,33 @@ function Home() {
     <>
       <Hero />
       <main>
-        <About />
         <Projects />
-        <Testimonials />
-        <Contact />
+        <About />
+        <PartnerWithUs />
       </main>
       <Footer />
     </>
   );
 }
 
-function ProjectsPage() {
+function BookingPage() {
   return (
     <>
       <Header light />
-      <main className="project-main"><Projects page /></main>
+      <main className="page-main">
+        <BookingCatalog />
+        <PartnerWithUs />
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+function AboutLumenixPage() {
+  return (
+    <>
+      <Header light />
+      <AboutLumenixContent />
       <Footer />
     </>
   );
@@ -294,7 +342,9 @@ function App() {
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
   }, []);
-  return location.pathname.startsWith("/projects") ? <ProjectsPage /> : <Home />;
+  if (location.pathname.startsWith("/booking")) return <BookingPage />;
+  if (location.pathname.startsWith("/about-lumenix")) return <AboutLumenixPage />;
+  return <Home />;
 }
 
 createRoot(document.getElementById("root")).render(<App />);
