@@ -14,6 +14,10 @@ import "./styles.css";
 
 const A = "/assets/";
 
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
 const navLinks = [
   ["Product", "/#product"],
   ["Global Partners", "/#global-partners"],
@@ -201,11 +205,30 @@ function BookingCatalog() {
 function PartnerWithUs() {
   const [status, setStatus] = useState("idle");
   const [notice, setNotice] = useState("");
+  const showEmailFallback =
+    status === "error" &&
+    (notice.includes("Message could not be sent") || notice.includes("Email delivery"));
 
   async function handlePartnerSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
     const payload = Object.fromEntries(new FormData(form).entries());
+    const fullName = String(payload.fullName || "").trim();
+    const email = String(payload.email || "").trim();
+    const marketRegion = String(payload.marketRegion || "").trim();
+    const partnershipType = String(payload.partnershipType || "").trim();
+
+    if (!fullName || !email || !marketRegion || !partnershipType) {
+      setStatus("error");
+      setNotice("Please complete all required fields before sending.");
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      setStatus("error");
+      setNotice("Please enter a valid business email address.");
+      return;
+    }
 
     setStatus("sending");
     setNotice("");
@@ -242,19 +265,26 @@ function PartnerWithUs() {
           <a href="mailto:contact@lumenix.live"><Mail /> <span><strong>Email Us</strong>contact@lumenix.live</span></a>
         </div>
       </div>
-      <form className="quote-form" onSubmit={handlePartnerSubmit}>
-        <label>Full Name <b>*</b><input name="fullName" placeholder="Jane Smith" required /></label>
+      <form className="quote-form" onSubmit={handlePartnerSubmit} noValidate>
+        <label>Full Name <b>*</b><input name="fullName" placeholder="Jane Smith" /></label>
         <div className="two">
-          <label>Email Address <b>*</b><input name="email" type="email" placeholder="jane@company.com" required /></label>
+          <label>Email Address <b>*</b><input name="email" type="email" placeholder="jane@company.com" /></label>
           <label>Messaging Contact (optional)<input name="messagingContact" placeholder="WeChat, WhatsApp, or Telegram" /></label>
         </div>
         <div className="two">
-          <label>Market / Region <b>*</b><input name="marketRegion" placeholder="e.g. Vietnam, Indonesia, Thailand..." required /></label>
-          <label>Partnership Type <b>*</b><select name="partnershipType" defaultValue="" required><option value="" disabled>Select...</option><option>Retail Distribution</option><option>E-commerce Launch</option><option>Brand Partnership</option><option>Other</option></select></label>
+          <label>Market / Region <b>*</b><input name="marketRegion" placeholder="e.g. Vietnam, Indonesia, Thailand..." /></label>
+          <label>Partnership Type <b>*</b><select name="partnershipType" defaultValue=""><option value="" disabled>Select...</option><option>Retail Distribution</option><option>E-commerce Launch</option><option>Brand Partnership</option><option>Other</option></select></label>
         </div>
         <label>Message / Partnership Brief<textarea name="message" placeholder="Tell us about your launch goals, channels, and target market..." /></label>
-        <button disabled={status === "sending"}><span>{status === "sending" ? "Sending..." : "Request Partnership Info"}</span><i><ArrowRight size={20} /></i></button>
-        {notice ? <p className={`form-notice ${status}`}>{notice}</p> : null}
+        <button type="submit" disabled={status === "sending"} aria-busy={status === "sending"}><span>{status === "sending" ? "Sending..." : "Request Partnership Info"}</span><i><ArrowRight size={20} /></i></button>
+        {notice ? (
+          <p className={`form-notice ${status}`} role="status" aria-live="polite">
+            {notice}
+            {showEmailFallback && !notice.includes("contact@lumenix.live") ? (
+              <a href="mailto:contact@lumenix.live">Email contact@lumenix.live</a>
+            ) : null}
+          </p>
+        ) : null}
       </form>
     </section>
   );
