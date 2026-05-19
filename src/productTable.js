@@ -33,7 +33,7 @@ export const PRODUCT_ROWS = [
   },
   {
     category: "Smart Wearables",
-    name: "AI Translation Earphone",
+    name: "AI Translation Earbuds",
     model: "BY16",
     image: "products/real-time-translation-earbuds/main.png",
     badge: "HOT",
@@ -49,7 +49,7 @@ export const PRODUCT_ROWS = [
   },
   {
     category: "Smart Office",
-    name: "AI Translation Machine",
+    name: "AI Voice Translator",
     model: "Z6",
     image: "products/solar-aroma-diffuser/main.png",
     badge: "NEW",

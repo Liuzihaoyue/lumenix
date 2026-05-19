@@ -557,6 +557,26 @@ input:focus, select:focus, textarea:focus { border-color: var(--orange); box-sha
   cursor: pointer;
   transition: transform .25s ease;
 }
+.quote-form button:disabled {
+  cursor: wait;
+  opacity: .72;
+  transform: none;
+}
+.form-notice {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.form-notice.sent {
+  color: #155b2a;
+  background: #e5f7ea;
+}
+.form-notice.error {
+  color: #8a1c1c;
+  background: #fde8e8;
+}
 
 footer {
   position: relative;

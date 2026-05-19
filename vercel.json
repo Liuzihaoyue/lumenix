@@ -1,7 +1,11 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/booking",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/about-lumenix",
       "destination": "/index.html"
     }
   ]

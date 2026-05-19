@@ -199,6 +199,38 @@ function BookingCatalog() {
 }
 
 function PartnerWithUs() {
+  const [status, setStatus] = useState("idle");
+  const [notice, setNotice] = useState("");
+
+  async function handlePartnerSubmit(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const payload = Object.fromEntries(new FormData(form).entries());
+
+    setStatus("sending");
+    setNotice("");
+
+    try {
+      const response = await fetch("/api/partner", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || "Message could not be sent. Please email contact@lumenix.live directly.");
+      }
+
+      form.reset();
+      setStatus("sent");
+      setNotice("Message sent. The Lumenix team will follow up at contact@lumenix.live.");
+    } catch (error) {
+      setStatus("error");
+      setNotice(error.message || "Message could not be sent. Please email contact@lumenix.live directly.");
+    }
+  }
+
   return (
     <section id="contact" className="contact section">
       <div className="contact-left">
@@ -210,18 +242,19 @@ function PartnerWithUs() {
           <a href="mailto:contact@lumenix.live"><Mail /> <span><strong>Email Us</strong>contact@lumenix.live</span></a>
         </div>
       </div>
-      <form className="quote-form" onSubmit={(e) => e.preventDefault()}>
-        <label>Full Name <b>*</b><input placeholder="Jane Smith" /></label>
+      <form className="quote-form" onSubmit={handlePartnerSubmit}>
+        <label>Full Name <b>*</b><input name="fullName" placeholder="Jane Smith" required /></label>
         <div className="two">
-          <label>Email Address <b>*</b><input type="email" placeholder="jane@company.com" /></label>
-          <label>Messaging Contact (optional)<input placeholder="WeChat, WhatsApp, or Telegram" /></label>
+          <label>Email Address <b>*</b><input name="email" type="email" placeholder="jane@company.com" required /></label>
+          <label>Messaging Contact (optional)<input name="messagingContact" placeholder="WeChat, WhatsApp, or Telegram" /></label>
         </div>
         <div className="two">
-          <label>Market / Region <b>*</b><input placeholder="e.g. Vietnam, Indonesia, Thailand..." /></label>
-          <label>Partnership Type <b>*</b><select defaultValue=""><option value="" disabled>Select...</option><option>Retail Distribution</option><option>E-commerce Launch</option><option>Brand Partnership</option><option>Other</option></select></label>
+          <label>Market / Region <b>*</b><input name="marketRegion" placeholder="e.g. Vietnam, Indonesia, Thailand..." required /></label>
+          <label>Partnership Type <b>*</b><select name="partnershipType" defaultValue="" required><option value="" disabled>Select...</option><option>Retail Distribution</option><option>E-commerce Launch</option><option>Brand Partnership</option><option>Other</option></select></label>
         </div>
-        <label>Message / Partnership Brief<textarea placeholder="Tell us about your launch goals, channels, and target market..." /></label>
-        <button><span>Request Partnership Info</span><i><ArrowRight size={20} /></i></button>
+        <label>Message / Partnership Brief<textarea name="message" placeholder="Tell us about your launch goals, channels, and target market..." /></label>
+        <button disabled={status === "sending"}><span>{status === "sending" ? "Sending..." : "Request Partnership Info"}</span><i><ArrowRight size={20} /></i></button>
+        {notice ? <p className={`form-notice ${status}`}>{notice}</p> : null}
       </form>
     </section>
   );
